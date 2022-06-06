@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace BlackJack
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+            const double playermoney=1000.00;
+            Console.WriteLine("\n     BLACKJACK  GAME    ");
+            Console.WriteLine("_____________________________");
+            string playername;
+            Console.Write(" \nPlease enter your nickname : ");
+            playername=Console.ReadLine();
+            Console.WriteLine("\n____________________________");
+            Console.WriteLine("\n\nWelcome  {0}",playername);
+            Console.Write("Available Money  : {0}",playermoney);
+            Console.WriteLine("\n\nChoice from the options below\n");
+            Console.WriteLine("          1. New Game");
+            Console.WriteLine("          2. EXIT the game");
+            Console.Write("\nYour choice is  : ");
+            string choice;
+            choice=Console.ReadLine();
+            Console.WriteLine("\n\n___________________________");
+            switch(choice)
+            {
+                case "1" : var randomcard=new Random();
+                           var firstscore=randomcard.Next(1, 10);
+                           var secondscore=randomcard.Next(1, 10);
+                           var thirdscore=0;
+
+                           Console.WriteLine("Your first card score is : {0}",firstscore);
+                           Console.WriteLine("\nYour second card score is : {0}",secondscore);
+                           Console.WriteLine("\nAre you want third card ???\n");
+                           Console.WriteLine("          1. YES");
+                           Console.WriteLine("          2. NO");
+                           Console.Write("\nYour choice is  : ");
+                           string choice1;
+                           choice1=Console.ReadLine();
+                           if (choice1 == "1")
+                           {
+                                thirdscore = randomcard.Next(1, 10);
+                                Console.WriteLine("\nYour third card score is : {0}",thirdscore);
+                           }
+
+                           var totalscore = firstscore + secondscore + thirdscore;
+                           Console.WriteLine("\n____________________________");
+                           Console.WriteLine("\nTotal card score is : {0}",totalscore);
+                           Console.WriteLine("\n____________________________");
+
+                           if (totalscore > 21)
+                           {
+                                Console.WriteLine("\nGame over..\n\n");
+                                return;
+                           }
+
+                           var dealerscore = randomcard.Next(10, 21);
+
+                           Console.WriteLine("\nYour dealer total card score is : {0}",dealerscore);
+
+                           if (totalscore <= dealerscore)
+                           {
+                               Console.WriteLine("\nDealer won! Game over..\n\n");
+                               return;
+                           }
+
+                           Console.WriteLine("\nCongratulations!!\nYou won!!\n\n");
+                           return;
+                case "2" : Console.WriteLine("\nExiting BlackJack");
+                           return;
+
+            }
+		}
+	}
+}
